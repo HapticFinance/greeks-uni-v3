@@ -1,0 +1,61 @@
+---
+title: "Greeks for concentrated liquidity positions and optimal liquidity"
+date: \today
+abstract: ""
+pdf_document: null
+geometry: "margin=25mm"
+output: 
+  pdf_document:
+      toc: false
+      number_sections: true
+      toc_depth: 2
+      keep_md: false
+      keep_tex: false
+      template: NULL
+html_document: default
+tables: yes
+latex_engine: pdflatex
+header-includes:
+- \usepackage{multirow}
+- \usepackage{amsmath}
+- \usepackage{mathtools,mathptmx}
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = "UTF-8", output_dir = "pdf") })
+---
+
+```{r, echo=FALSE, warning=FALSE, results='asis'}
+source(paste(path, "/greeks.r", sep=""))
+
+data <- get_chunks(0.5)
+data_frame <-data.frame(data)
+
+data_optimal_liq <- get_chunks_liq(0.5)
+
+data_frame %>%
+kbl(booktabs = T, 
+    align = "c", 
+    longtable = F, 
+    escape = FALSE, 
+    caption = "Greeks for concentrated liquidity positions\\label{tab:table1}",
+    col.names = c("$\\sigma$", "Pa", "Pb", "Range factor", "$\\delta$", "$\\gamma$")
+    ) %>%  
+    kable_styling(font_size = 9, latex_options = c("hold_position", "repeat_header")) %>%
+    column_spec(1, bold=F) %>%
+    collapse_rows(columns = 1, latex_hline = "major", valign = "middle")  %>%
+    print()
+
+data_optimal_liq %>%
+kbl(booktabs = T, 
+    align = "c", 
+    longtable = F, 
+    escape = FALSE, 
+    caption = "Choosing Optimal Uniswap V3 LP Positions\\label{tab:table2}",
+    col.names = c("Target $\\delta$", "$\\sigma$", "Price", "Time (Days)", "Pa", "Pb")
+    ) %>%  
+    kable_styling(font_size = 9, latex_options = c("hold_position", "repeat_header")) %>%
+    column_spec(1, bold=F) %>%
+    row_spec(c(5,10),  extra_latex_after = '\\cline{2-6}') %>%
+    collapse_rows(columns = c(1, 2, 4), latex_hline = "major", valign = "middle")  %>%
+    print()
+
+```

@@ -1,6 +1,10 @@
 # Package names
 packages <- c(
-  "tikzDevice"
+  "tikzDevice",
+  "knitr",
+  "rmarkdown",
+  "dplyr", 
+  "kableExtra"
 )
 
 # Install packages not yet installed
