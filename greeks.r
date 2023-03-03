@@ -9,11 +9,11 @@ get_greeks <- function(σ, r, K, P) {
 
     # Time to expiration
     T_t <- (2 * pi / σ^2 ) * ((sqrt(r) - 1) / (r -1))^2
-    δ_P <- (sqrt( r * (K / P)) - 1) / (r - 1)
-    γ_P <- (-sqrt(K * r)) / 2 * (r - 1) * P^(-3/2)
-    ν_P <- P * sqrt(T_t) * abs(δ_P) * γ_P
+    δ <- (sqrt( r * (K / P)) - 1) / (r - 1)
+    γ <- (-sqrt(K * r)) / 2 * (r - 1) * P^(-3/2)
+    ν <- P * sqrt(T_t) * abs(δ) * γ
 
-    return(list(δ_P = δ_P, γ_P = γ_P, ν_P = ν_P))
+    return(list(δ = δ, γ = γ, ν = ν))
 }
 
 calc_chunk <- function(σ, P) {
@@ -40,16 +40,16 @@ calc_chunk <- function(σ, P) {
         
         greeks <- get_greeks(σ, r, K, P)
 
-        δ_P <- greeks$δ_P
-        γ_P <- greeks$γ_P
-        ν_P <- greeks$ν_P
+        δ <- greeks$δ
+        γ <- greeks$γ
+        ν <- greeks$ν
 
         data[i, 1] <- σ
         data[i, 2] <- Pa
         data[i, 3] <- Pb
         data[i, 4] <- formatC(r, digits = 3, format = "f")
-        data[i, 5] <- formatC(δ_P, digits = 6, format = "f")
-        data[i, 6] <- formatC(γ_P, digits = 6, format = "f")
+        data[i, 5] <- formatC(δ, digits = 6, format = "f")
+        data[i, 6] <- formatC(γ, digits = 6, format = "f")
 
     }
     return(data)
@@ -103,12 +103,12 @@ calc_chunk_liq <- function(σ, δ, T) {
 
         greeks <- get_greeks(σ, r_t, K, P)
         
-        δ_P <- greeks$δ_P
-        γ_P <- greeks$γ_P
-        ν_P <- greeks$ν_P
+        δ <- greeks$δ
+        γ <- greeks$γ
+        ν <- greeks$ν
 
 
-        data[i, 1] <- δ_P
+        data[i, 1] <- δ
         data[i, 2] <- σ
         data[i, 3] <- prices[i]
         data[i, 4] <- T
