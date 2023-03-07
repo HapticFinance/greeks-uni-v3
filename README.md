@@ -1,6 +1,6 @@
 # Greeks for Uniswap V3
 
-The greeks are a toolbox used to measure risk in option trading. The most important greeks are delta, gamma, vega and thetha. This repository provides code to compute delta, gamma and vega for concentrated liquidity positions in Uniswap V3 [1]. Additionally, it shows how to calculate the optimal position size, given a target value of delta [2].
+The greeks are a toolbox used to measure risk in option trading. The most important greeks are delta, gamma, vega and thetha. This repository provides code to compute delta, gamma and vega for concentrated liquidity positions in Uniswap V3 [1] and to setup LP positions with a given target value of delta [2].
 
 
 This work is part of the research conducted while designing the Haptic protocol and is made available for educational purposes.
