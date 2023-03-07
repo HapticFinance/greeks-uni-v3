@@ -1,6 +1,5 @@
 ---
-title: "Greeks for concentrated liquidity positions and optimal liquidity"
-date: \today
+title: "Greeks for Uniswap V3"
 abstract: ""
 pdf_document: null
 geometry: "margin=25mm"
@@ -36,7 +35,7 @@ kbl(booktabs = T,
     align = "c", 
     longtable = F, 
     escape = FALSE, 
-    caption = "Greeks for concentrated liquidity positions\\label{tab:table1}",
+    caption = "Greeks for Uniswap V3 LP positions.\\label{tab:table1}",
     col.names = c("$\\sigma$", "Pa", "Pb", "Range factor", "$\\delta$", "$\\gamma$")
     ) %>%  
     kable_styling(font_size = 9, latex_options = c("hold_position", "repeat_header")) %>%
@@ -49,7 +48,7 @@ kbl(booktabs = T,
     align = "c", 
     longtable = F, 
     escape = FALSE, 
-    caption = "Choosing Optimal Uniswap V3 LP Positions\\label{tab:table2}",
+    caption = "Choosing optimal Uniswap V3 LP positions to achieve a target delta exposure.\\label{tab:table2}",
     col.names = c("Target $\\delta$", "$\\sigma$", "Price", "Time (Days)", "Pa", "Pb")
     ) %>%  
     kable_styling(font_size = 9, latex_options = c("hold_position", "repeat_header")) %>%

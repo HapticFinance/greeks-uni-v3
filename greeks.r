@@ -11,9 +11,8 @@ get_greeks <- function(σ, r, K, P) {
     T_t <- (2 * pi / σ^2 ) * ((sqrt(r) - 1) / (r -1))^2
     δ <- (sqrt( r * (K / P)) - 1) / (r - 1)
     γ <- (-sqrt(K * r)) / 2 * (r - 1) * P^(-3/2)
-    ν <- P * sqrt(T_t) * abs(δ) * γ
 
-    return(list(δ = δ, γ = γ, ν = ν))
+    return(list(δ = δ, γ = γ))
 }
 
 calc_chunk <- function(σ, P) {
@@ -42,7 +41,6 @@ calc_chunk <- function(σ, P) {
 
         δ <- greeks$δ
         γ <- greeks$γ
-        ν <- greeks$ν
 
         data[i, 1] <- σ
         data[i, 2] <- Pa
@@ -105,7 +103,6 @@ calc_chunk_liq <- function(σ, δ, T) {
         
         δ <- greeks$δ
         γ <- greeks$γ
-        ν <- greeks$ν
 
 
         data[i, 1] <- δ
